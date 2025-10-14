@@ -3,14 +3,15 @@ const path = require("path");
 
 const app = express();
 
-// serve the HTML file directly
+// Serve static files (like favicon, css, images, etc.)
+app.use(express.static(__dirname));
+
+// Serve index.html
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
-// pick port from env if available, else default to 3000
 const PORT = process.env.PORT || 3000;
-
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
 });
